@@ -26,7 +26,7 @@ def create_assistant(file):
         name="WhatsApp AirBnb Assistant",
         instructions="You're a helpful WhatsApp assistant that can assist guests that are staying in our Paris AirBnb. Use your knowledge base to best respond to customer queries. If you don't know the answer, say simply that you cannot help with question and advice to contact the host directly. Be friendly and funny.",
         tools=[{"type": "retrieval"}],
-        model="gpt-4-1106-preview",
+        model="gpt-3.5-turbo-0125",
         file_ids=[file.id],
     )
     return assistant
@@ -45,7 +45,7 @@ def store_thread(wa_id, thread_id):
 
 def run_assistant(thread, name):
     # Retrieve the Assistant
-    assistant = client.beta.assistants.retrieve(OPENAI_ASSISTANT_ID)
+    assistant = client.beta.assistants.retrieve("asst_CgTTwtPkriDlO4jrvKw7hVib")
 
     # Run the assistant
     run = client.beta.threads.runs.create(

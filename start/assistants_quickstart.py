@@ -13,11 +13,14 @@ client = OpenAI(api_key=OPEN_AI_API_KEY)
 # Upload file
 # --------------------------------------------------------------
 def upload_file(path):
-    # Upload a file with an "assistants" purpose
-    file = client.files.create(file=open(path, "rb"), purpose="assistants")
-    return file
+    try:
+        file = client.files.create(file=open(path, "rb"), purpose="assistants")
+        return file
+    except FileNotFoundError:
+        print(f"File not found at path: {path}")
+        return None
 
-
+# Usage
 file = upload_file("../data/airbnb-faq.pdf")
 
 
@@ -32,7 +35,7 @@ def create_assistant(file):
         name="WhatsApp AirBnb Assistant",
         instructions="You're a helpful WhatsApp assistant that can assist guests that are staying in our Paris AirBnb. Use your knowledge base to best respond to customer queries. If you don't know the answer, say simply that you cannot help with question and advice to contact the host directly. Be friendly and funny.",
         tools=[{"type": "retrieval"}],
-        model="gpt-4-1106-preview",
+        model="gpt-3.5-turbo-0125",
         file_ids=[file.id],
     )
     return assistant
@@ -91,7 +94,7 @@ def generate_response(message_body, wa_id, name):
 # --------------------------------------------------------------
 def run_assistant(thread):
     # Retrieve the Assistant
-    assistant = client.beta.assistants.retrieve("asst_7Wx2nQwoPWSf710jrdWTDlfE")
+    assistant = client.beta.assistants.retrieve("asst_CgTTwtPkriDlO4jrvKw7hVib")
 
     # Run the assistant
     run = client.beta.threads.runs.create(

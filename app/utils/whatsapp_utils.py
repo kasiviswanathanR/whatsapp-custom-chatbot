@@ -2,8 +2,7 @@ import logging
 from flask import current_app, jsonify
 import json
 import requests
-
-# from app.services.openai_service import generate_response
+from app.services.openai_service import generate_response
 import re
 
 
@@ -24,11 +23,37 @@ def get_text_message_input(recipient, text):
         }
     )
 
-
+"""
 def generate_response(response):
-    # Return text in uppercase
-    return response.upper()
+    responses = {
+        "hi": "welcome to my chatbot! how can i help you",
+        "hello":"welcome to my chatbot! how can i help you",
+        "name": "Hello Welcome to KV chatbot.",
+        "goodbye": "Goodbye! Have a great day!",
+        "info": "I'm a chatbot here to assist you.",
+        "how_are_you": "I'm doing well, thank you for asking!",
+        "what_can_i_do": "You can ask me anything within my capabilities.",
+        "bye": "See you later!",
+        "greeting": "Hi there, how can I help you?",
+        "error": "Oops! Something went wrong.",
+        "thanks": "Thank you for chatting with me!",
+        "understood": "Got it!",
+        "searching": "Let me find that information for you.",
+        "happy": "I'm glad to hear that!",
+        "sad": "I'm sorry to hear that. Can I help in any way?",
+        "confused": "I can clarify that for you.",
+        "busy": "I'm a bit busy right now, but I'll get back to you soon.",
+        "no_problem": "No problem at all!",
+        "great_day": "I hope you're having a great day!",
+        "sleepy": "I'm a chatbot, I don't sleep, but I'm here to assist you!",
+        # Add more response types as needed
+    }
 
+    if response.lower() in responses:
+        return responses[response.lower()]
+    else:
+        return "I'm sorry, I don't understand that request."
+"""
 
 def send_message(data):
     headers = {
@@ -82,12 +107,10 @@ def process_whatsapp_message(body):
     message = body["entry"][0]["changes"][0]["value"]["messages"][0]
     message_body = message["text"]["body"]
 
-    # TODO: implement custom function here
-    response = generate_response(message_body)
 
     # OpenAI Integration
-    # response = generate_response(message_body, wa_id, name)
-    # response = process_text_for_whatsapp(response)
+    response = generate_response(message_body, wa_id, name)
+    response = process_text_for_whatsapp(response)
 
     data = get_text_message_input(current_app.config["RECIPIENT_WAID"], response)
     send_message(data)
