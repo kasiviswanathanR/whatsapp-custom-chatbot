@@ -18,20 +18,9 @@ This guide will walk you through the process of creating a WhatsApp bot using th
   - [Step 1: Select Phone Numbers](#step-1-select-phone-numbers)
   - [Step 2: Send Messages with the API](#step-2-send-messages-with-the-api)
   - [Step 3: Configure Webhooks to Receive Messages](#step-3-configure-webhooks-to-receive-messages)
-      - [Start your app](#start-your-app)
       - [Launch ngrok](#launch-ngrok)
       - [Integrate WhatsApp](#integrate-whatsapp)
       - [Testing the Integration](#testing-the-integration)
-  - [Step 4: Understanding Webhook Security](#step-4-understanding-webhook-security)
-      - [Verification Requests](#verification-requests)
-      - [Validating Verification Requests](#validating-verification-requests)
-      - [Validating Payloads](#validating-payloads)
-  - [Step 5: Learn about the API and Build Your App](#step-5-learn-about-the-api-and-build-your-app)
-  - [Step 6: Integrate AI into the Application](#step-6-integrate-ai-into-the-application)
-  - [Step 7: Add a Phone Number](#step-7-add-a-phone-number)
-  - [Datalumina](#datalumina)
-  - [Tutorials](#tutorials)
-
 ## Get Started
 
 1. **Overview & Setup**: Begin your journey [here](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started).
